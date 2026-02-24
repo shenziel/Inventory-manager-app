@@ -12,11 +12,14 @@ pipeline {
         stage('Identify Committer') {
             steps {
                 script {
-                    def author = env.GIT_AUTHOR_NAME
                     def commit = env.GIT_COMMIT
                     def branch = env.GIT_BRANCH
+                    def author = env.GIT_AUTHOR_NAME?.trim()
+                    def pusher = env.PUSHER_NAME?.trim()
 
-                    echo "Triggered by: ${author}"
+                    def displayName = (author && author != '') ? author : pusher
+
+                    echo "Triggered by: ${displayName}"
                     echo "Commit: ${commit}"
                     echo "Branch: ${branch}"
 
