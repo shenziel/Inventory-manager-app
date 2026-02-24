@@ -22,7 +22,7 @@ pipeline {
                     sh 'mvn test'
                 }
             }
-            post { always { junit 'target/surefire-reports/*.xml' } }
+            post { always { junit 'Inventory-manager/target/surefire-reports/*.xml' } }
         }
     }
 }
