@@ -25,7 +25,7 @@ pipeline {
                     echo env.GIT_AUTHOR_NAME
 
                     // Store it for later stages
-                    currentBuild.description = "Pushed by ${author} on ${branch}"
+                    currentBuild.description = "Pushed by ${pusher} on ${branch}"
                 }
             }
         }
