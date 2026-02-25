@@ -14,7 +14,10 @@ pipeline {
                 script {
                     def commit = env.GIT_COMMIT
                     def branch = env.GIT_BRANCH
-                    def author = env.GIT_AUTHOR_NAME?.trim()
+                    def author = sh(
+                            script: "git log -1 --format='%an'",
+                            returnStdout: true
+                    ).trim()
                     def pusher = env.PUSHER_NAME?.trim()
 
                     def displayName = (author && author != '') ? author : pusher
@@ -22,10 +25,9 @@ pipeline {
                     echo "Triggered by: ${displayName}"
                     echo "Commit: ${commit}"
                     echo "Branch: ${branch}"
-                    echo env.GIT_AUTHOR_NAME
 
                     // Store it for later stages
-                    currentBuild.description = "Pushed by ${pusher} on ${branch}"
+                    currentBuild.description = "Pushed by ${displayName} on ${branch}"
                 }
             }
         }
