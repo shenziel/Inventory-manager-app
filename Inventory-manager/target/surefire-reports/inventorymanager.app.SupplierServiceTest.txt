@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+Test set: inventorymanager.app.SupplierServiceTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.033 s <<< FAILURE! -- in inventorymanager.app.SupplierServiceTest
+inventorymanager.app.SupplierServiceTest.invalidId_checks -- Time elapsed: 0.011 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:159)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:74)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3223)
+	at inventorymanager.app.SupplierServiceTest.invalidId_checks(SupplierServiceTest.java:125)
+
+inventorymanager.app.SupplierServiceTest.updateSupplier_nonExisting_throws -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.RuntimeException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:159)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:74)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3223)
+	at inventorymanager.app.SupplierServiceTest.updateSupplier_nonExisting_throws(SupplierServiceTest.java:118)
+
+inventorymanager.app.SupplierServiceTest.addSupplier_duplicate_throws -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected duplicate add to throw ==> Expected java.lang.RuntimeException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:159)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:74)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:40)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3249)
+	at inventorymanager.app.SupplierServiceTest.addSupplier_duplicate_throws(SupplierServiceTest.java:70)
+
+inventorymanager.app.SupplierServiceTest.updateSupplier_success -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <s1> but was: <wrong>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:201)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:184)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:179)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1188)
+	at inventorymanager.app.SupplierServiceTest.updateSupplier_success(SupplierServiceTest.java:107)
+

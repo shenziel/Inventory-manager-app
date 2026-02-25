@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="inventorymanager.app.InventoryManagerApplicationTests" time="2.779" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="inventorymanager.app.SupplierServiceTest" time="0.033" tests="8" errors="0" skipped="0" failures="4">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -63,47 +63,46 @@
     <property name="java.class.version" value="61.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[Inventory-manager] "/>
   </properties>
-  <testcase name="testCheckForIsogram" classname="inventorymanager.app.InventoryManagerApplicationTests" time="0.663">
-    <system-out><![CDATA[00:09:45.049 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [inventorymanager.app.InventoryManagerApplicationTests]: InventoryManagerApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-00:09:45.129 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration inventorymanager.app.InventoryManagerApplication for test class inventorymanager.app.InventoryManagerApplicationTests
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
-
- :: Spring Boot ::                (v4.0.3)
-
-2026-02-26T00:09:45.543+02:00  INFO 4896 --- [Inventory-manager] [           main] i.app.InventoryManagerApplicationTests   : Starting InventoryManagerApplicationTests using Java 17.0.12 with PID 4896 (started by USER in G:\Code\Inventory-manager-app\Inventory-manager)
-2026-02-26T00:09:45.545+02:00  INFO 4896 --- [Inventory-manager] [           main] i.app.InventoryManagerApplicationTests   : No active profile set, falling back to 1 default profile: "default"
-2026-02-26T00:09:46.630+02:00  INFO 4896 --- [Inventory-manager] [           main] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|spring-boot|sync", "version": "5.6.3"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.12+8-LTS-286"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@2589d787, com.mongodb.Jep395RecordCodecProvider@1788cb61, com.mongodb.KotlinCodecProvider@16d431b4, EnumCodecProvider{}]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverMonitoringMode=AUTO, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=UNSPECIFIED, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null, timeoutMS=null}
-2026-02-26T00:09:46.629+02:00  INFO 4896 --- [Inventory-manager] [localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
-
-com.mongodb.MongoSocketOpenException: Exception opening socket
-	at com.mongodb.internal.connection.SocketStream.lambda$open$0(SocketStream.java:85) ~[mongodb-driver-core-5.6.3.jar:na]
-	at java.base/java.util.Optional.orElseThrow(Optional.java:403) ~[na:na]
-	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:85) ~[mongodb-driver-core-5.6.3.jar:na]
-	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:233) ~[mongodb-driver-core-5.6.3.jar:na]
-	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitor.setupNewConnectionAndGetInitialDescription(DefaultServerMonitor.java:282) ~[mongodb-driver-core-5.6.3.jar:na]
-	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitor.lookupServerDescription(DefaultServerMonitor.java:253) ~[mongodb-driver-core-5.6.3.jar:na]
-	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitor.run(DefaultServerMonitor.java:203) ~[mongodb-driver-core-5.6.3.jar:na]
-Caused by: java.net.ConnectException: Connection refused: no further information
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:547) ~[na:na]
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602) ~[na:na]
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
-	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
-	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:76) ~[mongodb-driver-core-5.6.3.jar:na]
-	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:104) ~[mongodb-driver-core-5.6.3.jar:na]
-	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:79) ~[mongodb-driver-core-5.6.3.jar:na]
-	... 4 common frames omitted
-
-2026-02-26T00:09:46.930+02:00  INFO 4896 --- [Inventory-manager] [           main] i.app.InventoryManagerApplicationTests   : Started InventoryManagerApplicationTests in 1.647 seconds (process running for 2.698)
-]]></system-out>
+  <testcase name="invalidId_checks" classname="SupplierService TDD - failing tests initially" time="0.011">
+    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:159)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:74)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3223)
+	at inventorymanager.app.SupplierServiceTest.invalidId_checks(SupplierServiceTest.java:125)
+]]></failure>
   </testcase>
-  <testcase name="simpleArithmeticTest" classname="inventorymanager.app.InventoryManagerApplicationTests" time="0.004"/>
-  <testcase name="contextLoads" classname="inventorymanager.app.InventoryManagerApplicationTests" time="0.003"/>
+  <testcase name="addSupplier_null_throws" classname="SupplierService TDD - failing tests initially" time="0.002"/>
+  <testcase name="updateSupplier_nonExisting_throws" classname="SupplierService TDD - failing tests initially" time="0.002">
+    <failure message="Expected java.lang.RuntimeException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Expected java.lang.RuntimeException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:159)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:74)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3223)
+	at inventorymanager.app.SupplierServiceTest.updateSupplier_nonExisting_throws(SupplierServiceTest.java:118)
+]]></failure>
+  </testcase>
+  <testcase name="removeSupplier_nonExisting" classname="SupplierService TDD - failing tests initially" time="0.001"/>
+  <testcase name="addSupplier_duplicate_throws" classname="SupplierService TDD - failing tests initially" time="0.002">
+    <failure message="expected duplicate add to throw ==&gt; Expected java.lang.RuntimeException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected duplicate add to throw ==> Expected java.lang.RuntimeException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:159)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:74)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:40)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3249)
+	at inventorymanager.app.SupplierServiceTest.addSupplier_duplicate_throws(SupplierServiceTest.java:70)
+]]></failure>
+  </testcase>
+  <testcase name="addSupplier_success" classname="SupplierService TDD - failing tests initially" time="0.001"/>
+  <testcase name="removeSupplier_existing" classname="SupplierService TDD - failing tests initially" time="0.001"/>
+  <testcase name="updateSupplier_success" classname="SupplierService TDD - failing tests initially" time="0.002">
+    <failure message="expected: &lt;s1&gt; but was: &lt;wrong&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <s1> but was: <wrong>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:201)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:184)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:179)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1188)
+	at inventorymanager.app.SupplierServiceTest.updateSupplier_success(SupplierServiceTest.java:107)
+]]></failure>
+  </testcase>
 </testsuite>

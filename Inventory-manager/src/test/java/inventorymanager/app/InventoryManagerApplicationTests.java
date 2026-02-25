@@ -24,7 +24,7 @@ class InventoryManagerApplicationTests {
 
 	@Test
 	void simpleArithmeticTest() {
-		// TODO: a trivial unit test to demonstrate JUnit usage [Delete]
+		// TODO: [Delete]
 		assertEquals(2, InventoryManagerApplication.addition());
 	}
 
