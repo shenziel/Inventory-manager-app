@@ -6,19 +6,19 @@ import java.util.List;
 
 public class UserService {
 
-    private List<User> users;
+    private final Map<Long, User> users = new HashMap<>();
 
     public boolean addUser(User user) {
         return false;
     }
-    public List<User> getUsersList() {
+    public Map<Long, User> getUsersList() {
         return users;
     }
     public void setUsers(List<User> users) {}
     public int getAllUsers() {
         return users.size();
     }
-    public User getUser(Long id) {
+    public User getUserById(Long id) {
         return null;
     }
 

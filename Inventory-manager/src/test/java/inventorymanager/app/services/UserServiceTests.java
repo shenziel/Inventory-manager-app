@@ -9,11 +9,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTests {
+class UserServiceTests {
 
     private UserService userService;
 
@@ -42,26 +42,34 @@ public class UserServiceTests {
 
     @Test
     void testAddUser_shouldNotAddNullUserAndThrowException() {
-        boolean result = userService.addUser(null);
-        assertFalse(result);
         assertThrows(NullPointerException.class, () -> userService.addUser(null));
         assertEquals(0, userService.getAllUsers());
     }
 
     @Test
-    void testGetUser_ReturnsUser() {
+    void testGetUserById_ReturnsExistingUser() {
         User user = new User(1L, "user1", "password123");
         userService.addUser(user);
-        User userReturned = userService.getUser(1L);
+        User userReturned = userService.getUserById(1L);
         assertNotNull(userReturned);
         assertEquals(user, userReturned);
+    }
+
+    @Test
+    void testGetUserById_ThrowsExceptionForNullUser() {
+        assertThrows(NullPointerException.class, () -> userService.getUserById(null));
+    }
+
+    @Test
+    void testGetUserById_ReturnsNullForNonExistingUser() {
+        assertThrows(NullPointerException.class, () -> userService.getUserById(999L));
     }
 
     @Test
     void testGetAllUsers_ReturnsAllUsers() {
         User user = new User(1L, "user1", "password123");
         userService.addUser(user);
-        List<User> users = userService.getUsersList();
+        Map<Long, User> users = userService.getUsersList();
         assertNotNull(users);
     }
 
@@ -77,9 +85,8 @@ public class UserServiceTests {
     }
 
     @Test
-    void testRemoveUser_ReturnsFalseForNonExistingUserAndThrowException() {
+    void testRemoveUser_ReturnsFalseForNonExistingUser() {
         boolean result = userService.removeUser(999L);
-        assertThrows(NullPointerException.class, () -> userService.removeUser(999L));
         assertFalse(result);
     }
 

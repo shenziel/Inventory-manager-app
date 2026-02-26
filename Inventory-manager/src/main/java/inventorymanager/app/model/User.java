@@ -11,6 +11,10 @@ public class User {
         this.password = password;
         this.id = id;
     }
+
+    public Long getId() {
+        return id;
+    }
     public String getUsername() {
         return username;
     }
@@ -19,5 +23,9 @@ public class User {
     }
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
