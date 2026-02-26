@@ -1,4 +1,4 @@
-package inventorymanager.app.services;
+package inventorymanager.app;
 import inventorymanager.app.Product;
 import inventorymanager.app.services.InventoryService;
 

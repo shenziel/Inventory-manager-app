@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e241ad30-8bdd-4e3a-bf0e-877d87ec92bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Inventory-manager/src/main/java/inventorymanager/app/services/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory-manager/src/main/java/inventorymanager/app/services/InventoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory-manager/src/test/java/inventorymanager/app/StockAlertTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory-manager/src/test/java/inventorymanager/app/StockAlertTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +112,7 @@
       <workItem from="1772143328431" duration="108000" />
       <workItem from="1772143465418" duration="39000" />
       <workItem from="1772143522574" duration="195000" />
-      <workItem from="1772143735647" duration="363000" />
+      <workItem from="1772143735647" duration="714000" />
     </task>
     <servers />
   </component>
