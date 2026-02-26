@@ -1,0 +1,7 @@
+.idea/Inventory-manager-app.iml
+.idea/misc.xml
+.gitignore
+.idea/vcs.xml
+.idea/modules.xml
+.idea/workspace.xml
+Inventory-manager/target/*
