@@ -1,5 +1,5 @@
-package invetorymanager.app.Product;
-import inentorymanager.app.services;
+package inventorymanager.app.Product;
+import inventorymanager.app.services;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
