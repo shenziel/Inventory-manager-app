@@ -1,6 +1,7 @@
 package inventorymanager.app.services;
 
-import inventorymanager.app.Supplier;
+import inventorymanager.app.model.Supplier;
+import inventorymanager.app.service.SupplierService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

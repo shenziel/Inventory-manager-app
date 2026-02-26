@@ -1,6 +1,6 @@
-package inventorymanager.app.services;
+package inventorymanager.app.service;
 
-import inventorymanager.app.Supplier;
+import inventorymanager.app.model.Supplier;
 
 import java.util.List;
 
