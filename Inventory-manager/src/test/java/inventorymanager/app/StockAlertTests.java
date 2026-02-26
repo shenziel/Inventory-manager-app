@@ -9,7 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("tests for stock alert")
 
 public class StockAlertTests {
-    private InventoryService inventoryService = new InventoryService();
+    private InventoryService inventoryService;
+
+    @BeforeEach
+    void setUp() {
+        inventoryService = new InventoryService();
+    }
 
     @Test
     void testStockAlert_returnsTrueWhenProductIsBelowStock() {
@@ -21,7 +26,7 @@ public class StockAlertTests {
 
     @Test
     void testStockAlert_returnsFalseWhenProductIsAboveStock() {
-        Product product new Product("hg02", "gundam age-FX", 15);
+        Product product = new Product("hg02", "gundam age-FX", 15);
         inventoryService.addProduct(product, 20);
         boolean stock = inventoryService.isLowStock(product);
         assertFalse(stock);
