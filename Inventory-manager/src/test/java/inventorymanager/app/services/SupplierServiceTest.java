@@ -3,6 +3,7 @@ package inventorymanager.app.services;
 import inventorymanager.app.Supplier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.*;
 
@@ -11,11 +12,17 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("SupplierService TDD - failing tests initially")
 class SupplierServiceTest {
 
+    private SupplierService svc;
+
+    @BeforeEach
+    void setUp() {
+        svc = new SupplierService();
+    }
+
 
     @Test
     @DisplayName("addSupplier should add and later return the supplier")
     void addSupplier_success() {
-        SupplierService svc = new SupplierService();
         Supplier s = new Supplier("s1", "Acme Corp");
 
         svc.addSupplier(s);
@@ -28,7 +35,6 @@ class SupplierServiceTest {
     @Test
     @DisplayName("addSupplier should throw when adding duplicate id")
     void addSupplier_duplicate_throws() {
-        SupplierService svc = new SupplierService();
         Supplier s1 = new Supplier("s1", "Acme");
         svc.addSupplier(s1);
 
@@ -39,14 +45,12 @@ class SupplierServiceTest {
     @Test
     @DisplayName("addSupplier should throw when supplier is null")
     void addSupplier_null_throws() {
-        SupplierService svc = new SupplierService();
         assertThrows(NullPointerException.class, () -> svc.addSupplier(null));
     }
 
     @Test
     @DisplayName("removeSupplier should remove existing and return true")
     void removeSupplier_existing() {
-        SupplierService svc = new SupplierService();
         Supplier s = new Supplier("s1", "Acme");
         svc.addSupplier(s);
 
@@ -58,14 +62,13 @@ class SupplierServiceTest {
     @Test
     @DisplayName("removeSupplier should return false for non-existing id")
     void removeSupplier_nonExisting() {
-        SupplierService svc = new SupplierService();
+        addSupplier_success();
         assertFalse(svc.removeSupplier("nope"));
     }
 
     @Test
     @DisplayName("updateSupplier should update name while preserving id")
     void updateSupplier_success() {
-        SupplierService svc = new SupplierService();
         svc.addSupplier(new Supplier("s1", "OldName"));
 
         Supplier updated = svc.updateSupplier("s1", new Supplier("ignored", "NewName"));
@@ -80,18 +83,15 @@ class SupplierServiceTest {
     @Test
     @DisplayName("updateSupplier should throw when id does not exist")
     void updateSupplier_nonExisting_throws() {
-        SupplierService svc = new SupplierService();
         assertThrows(RuntimeException.class, () -> svc.updateSupplier("missing", new Supplier("x","y")));
     }
 
     @Test
     @DisplayName("methods should validate null or blank ids")
     void invalidId_checks() {
-        SupplierService svc = new SupplierService();
         assertThrows(IllegalArgumentException.class, () -> svc.getSupplier(null));
         assertThrows(IllegalArgumentException.class, () -> svc.getSupplier(" "));
         assertThrows(IllegalArgumentException.class, () -> svc.removeSupplier(""));
         assertThrows(IllegalArgumentException.class, () -> svc.updateSupplier(null, new Supplier("x","y")));
     }
 }
-
