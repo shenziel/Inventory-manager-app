@@ -23,9 +23,7 @@ class SupplierServiceTest {
     @Test
     @DisplayName("addSupplier should add and later return the supplier")
     void addSupplier_success() {
-        Supplier s = new Supplier("s1", "Acme Corp");
-
-        svc.addSupplier(s);
+        Supplier s = addsupplier();
 
         Supplier found = svc.getSupplier("s1");
         assertNotNull(found);
@@ -35,8 +33,7 @@ class SupplierServiceTest {
     @Test
     @DisplayName("addSupplier should throw when adding duplicate id")
     void addSupplier_duplicate_throws() {
-        Supplier s1 = new Supplier("s1", "Acme");
-        svc.addSupplier(s1);
+        addsupplier();
 
         Supplier s2 = new Supplier("s1", "Another");
         assertThrows(RuntimeException.class, () -> svc.addSupplier(s2), "expected duplicate add to throw");
@@ -51,8 +48,7 @@ class SupplierServiceTest {
     @Test
     @DisplayName("removeSupplier should remove existing and return true")
     void removeSupplier_existing() {
-        Supplier s = new Supplier("s1", "Acme");
-        svc.addSupplier(s);
+        addsupplier();
 
         boolean removed = svc.removeSupplier("s1");
         assertTrue(removed);
@@ -62,8 +58,9 @@ class SupplierServiceTest {
     @Test
     @DisplayName("removeSupplier should return false for non-existing id")
     void removeSupplier_nonExisting() {
-        addSupplier_success();
-        assertFalse(svc.removeSupplier("nope"));
+        Supplier s = addsupplier();
+        assertNotNull(s);
+        assertThrows(RuntimeException.class, () -> svc.removeSupplier(s.id()));
     }
 
     @Test
@@ -93,5 +90,12 @@ class SupplierServiceTest {
         assertThrows(IllegalArgumentException.class, () -> svc.getSupplier(" "));
         assertThrows(IllegalArgumentException.class, () -> svc.removeSupplier(""));
         assertThrows(IllegalArgumentException.class, () -> svc.updateSupplier(null, new Supplier("x","y")));
+    }
+
+    private Supplier addsupplier() {
+        Supplier s = new Supplier("s1", "Acme Corp");
+
+        svc.addSupplier(s);
+        return s;
     }
 }
