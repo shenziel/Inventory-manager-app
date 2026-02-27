@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("SupplierService TDD - failing tests initially")
 class SupplierServiceTest {
 
-    static class TestSupplierService implements SupplierService {
+    static class TestSupplierService extends SupplierService {
         private final Map<String, Supplier> store = new HashMap<>();
 
         @Override

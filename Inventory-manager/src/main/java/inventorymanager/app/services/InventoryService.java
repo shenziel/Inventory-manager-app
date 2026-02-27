@@ -1,12 +1,25 @@
 package inventorymanager.app.services;
-import inventorymanager.app.services;
 import inventorymanager.app.Product;
 
-public interface InventoryService {
-//later when tests are done
-    void addProduct(Product product, int quantity);
-    Product getProduct(String id);
-    boolean removeProduct(String id);
-    Product updateProduct(String id, Product updated);
-    boolean isLowStock(Product product);
+public class InventoryService {
+    //later when tests are done
+    public void addProduct(Product product, int quantity) {
+
+    }
+
+    Product getProduct(String id) {
+        return null;
+    }
+
+    boolean removeProduct(String id) {
+        return false;
+    }
+
+    Product updateProduct(String id, Product updated) {
+        return null;
+    }
+
+    public boolean isLowStock(Product product) {
+        return false;
+    }
 }
