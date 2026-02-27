@@ -22,33 +22,37 @@ class UserServiceTests {
     }
 
     @Test
-    void testAddUser_ReturnsTrueAndCreatesUser() {
-        User user = new User(1L, "user1", "password123");
-        boolean result = userService.addUser(user);
+    void testCreateUser_ReturnsTrueAndCreatesUser() {
+        boolean result = userService.createUser("user1", "password123");
         assertTrue(result);
         assertEquals(1, userService.getAllUsers());
     }
 
     @Test
-    void testAddUser_shouldNotAddDuplicateUser() {
-        User user = new User(1L, "user1", "password123");
-        boolean addUser = userService.addUser(user);
-        boolean addUser1 = userService.addUser(user);
+    void testAddUser_shouldNotCreateDuplicateUser() {
+        boolean addUser = userService.createUser("user1", "password123");
+        boolean addUser1 = userService.createUser("user1", "password123");
         assertTrue(addUser);
         assertFalse(addUser1);
         assertEquals(1, userService.getAllUsers());
     }
 
     @Test
-    void testAddUser_shouldNotAddNullUserAndThrowException() {
-        assertThrows(NullPointerException.class, () -> userService.addUser(null));
+    void testAddUser_shouldNotCreateUserWithNullEmailAndThrowException() {
+        assertThrows(NullPointerException.class, () -> userService.createUser(null, "password123"));
+        assertEquals(0, userService.getAllUsers());
+    }
+
+    @Test
+    void testAddUser_shouldNotCreateUserWithNullPasswordAndThrowException() {
+        assertThrows(NullPointerException.class, () -> userService.createUser("user1", null));
         assertEquals(0, userService.getAllUsers());
     }
 
     @Test
     void testGetUserById_ReturnsExistingUser() {
         User user = new User(1L, "user1", "password123");
-        userService.addUser(user);
+        userService.createUser("user1", "password123");
         User userReturned = userService.getUserById(1L);
         assertNotNull(userReturned);
         assertEquals(user, userReturned);
@@ -66,18 +70,15 @@ class UserServiceTests {
 
     @Test
     void testGetAllUsers_ReturnsAllUsers() {
-        User user = new User(1L, "user1", "password123");
-        userService.addUser(user);
+        userService.createUser("user1", "password123");
         Map<Long, User> users = userService.getUsersList();
         assertEquals(1, users.size());
     }
 
     @Test
     void testRemoveUser_ReturnsTrueAndRemovesUser() {
-        User user = new User(1L, "user1", "password123");
-        userService.addUser(user);
-        User user1 = new User(2L, "user2", "password123");
-        userService.addUser(user1);
+        userService.createUser("user1", "password123");
+        userService.createUser("user1", "password123");
         boolean result = userService.removeUser(1L);
         assertTrue(result);
         assertEquals(1, userService.getAllUsers());
@@ -85,8 +86,7 @@ class UserServiceTests {
 
     @Test
     void testRemoveUser_ReturnsFalseForNonExistingUser() {
-        boolean result = userService.removeUser(999L);
-        assertFalse(result);
+        assertThrows(NullPointerException.class, () -> userService.removeUser(999L));
     }
 
 }

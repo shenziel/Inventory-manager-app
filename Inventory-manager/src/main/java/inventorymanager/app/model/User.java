@@ -1,15 +1,19 @@
 package inventorymanager.app.model;
 
 public class User {
-    public Long id;
-    public  String username;
-    public String password;
-    public String email;
+    private Long id;
+    private String username;
+    private String password;
+    private String email;
+    private boolean loggedIn;
+    private UserRoles role;
+
 
     public User(Long id, String username, String password) {
         this.username = username;
         this.password = password;
         this.id = id;
+        this.loggedIn = false;
     }
 
     public Long getId() {
@@ -28,4 +32,13 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    public boolean isLoggedIn() {
+        return false;
+    }
+    public void setLoggedIn(boolean loggedIn) {}
+
+    public UserRoles getRole() {
+        return null;
+    }
+    public void setRole(UserRoles role) {}
 }
