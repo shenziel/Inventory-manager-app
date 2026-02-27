@@ -9,14 +9,42 @@ pipeline {
     options { skipStagesAfterUnstable() }
 
     stages {
+        stage('Identify Committer') {
+            steps {
+                script {
+                    def commit = env.GIT_COMMIT
+                    def branch = env.GIT_BRANCH
+                    def author = sh(
+                            script: "git log -1 --format='%an'",
+                            returnStdout: true
+                    ).trim()
+                    def pusher = env.PUSHER_NAME?.trim()
+
+                    def displayName = (author && author != '') ? author : pusher
+
+                    echo "Triggered by: ${displayName}"
+                    echo "Commit: ${commit}"
+                    echo "Branch: ${branch}"
+
+                    // Store it for later stages
+                    currentBuild.description = "Pushed by ${displayName} on ${branch}"
+                }
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                dir('Inventory-manager') {
+                    sh 'mvn -B -DskipTests clean package'
+                }
             }
         }
         stage('Test') {
-            steps { sh 'mvn test' }
-            post { always { junit 'target/surefire-reports/*.xml' } }
+            steps {
+                dir('Inventory-manager') {
+                    sh 'mvn test'
+                }
+            }
+            post { always { junit 'Inventory-manager/target/surefire-reports/*.xml' } }
         }
     }
 }
