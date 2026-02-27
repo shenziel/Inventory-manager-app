@@ -1,11 +1,9 @@
-package inventorymanager.app.services;
+package inventorymanager.app.service;
 
 import inventorymanager.app.Supplier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-
-import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
