@@ -2,7 +2,9 @@ package inventorymanager.app.service;
 
 import inventorymanager.app.model.User;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserService {
 

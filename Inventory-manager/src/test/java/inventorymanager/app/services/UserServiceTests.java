@@ -70,7 +70,7 @@ class UserServiceTests {
         User user = new User(1L, "user1", "password123");
         userService.addUser(user);
         Map<Long, User> users = userService.getUsersList();
-        assertNotNull(users);
+        assertEquals(1, users.size());
     }
 
     @Test
