@@ -5,12 +5,22 @@ import inventorymanager.app.model.Supplier;
 import java.util.List;
 
     // TODO: After test
-public interface SupplierService {
-    void addSupplier(Supplier supplier);
-    Supplier getSupplier(String id);
-    boolean removeSupplier(String id);
-    Supplier updateSupplier(String id, Supplier updated);
+public class SupplierService {
+    void addSupplier(Supplier supplier){
 
-    List<Supplier> listSuppliers();
+    }
+    Supplier getSupplier(String id){
+        return null;
+    }
+    boolean removeSupplier(String id){
+        return false;
+    }
+    Supplier updateSupplier(String id, Supplier updated){
+        return null;
+    }
+
+    List<Supplier> listSuppliers(){
+        return null;
+    }
 }
 
