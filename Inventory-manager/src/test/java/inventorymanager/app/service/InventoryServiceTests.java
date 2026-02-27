@@ -1,6 +1,5 @@
-package inventorymanager.app;
-import inventorymanager.app.Product;
-import inventorymanager.app.services.InventoryService;
+package inventorymanager.app.service;
+import inventorymanager.app.model.Product;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("tests for stock alert")
 
-public class StockAlertTests {
+public class InventoryServiceTests {
     private InventoryService inventoryService;
 
     @BeforeEach

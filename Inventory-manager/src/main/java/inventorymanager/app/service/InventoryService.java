@@ -1,5 +1,5 @@
-package inventorymanager.app.services;
-import inventorymanager.app.Product;
+package inventorymanager.app.service;
+import inventorymanager.app.model.Product;
 
 public class InventoryService {
     //later when tests are done
