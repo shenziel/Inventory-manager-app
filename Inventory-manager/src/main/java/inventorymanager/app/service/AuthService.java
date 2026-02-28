@@ -14,9 +14,12 @@ public class AuthService {
      }
 
      public User registerAdmin(String email, String password) {
-         userService.register(email, password);
          return null;
      }
+
+    public User registerManager(String username, String password) {
+        return null;
+    }
 
      public boolean logout(String email) {
          return userService.logout(email);
@@ -25,8 +28,4 @@ public class AuthService {
      public void deleteUser(Long id) {
          userService.deleteUser(id);
      }
-
-    public User registerManager(String username, String password) {
-        return null;
-    }
 }
