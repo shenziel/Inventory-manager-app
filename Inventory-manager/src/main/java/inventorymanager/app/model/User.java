@@ -1,9 +1,9 @@
 package inventorymanager.app.model;
 
 public class User {
-    private Long id;
-    private String username;
-    private String password;
+    private final Long id;
+    private final String username;
+    private final String password;
     private String email;
     private boolean loggedIn;
     private UserRoles role;

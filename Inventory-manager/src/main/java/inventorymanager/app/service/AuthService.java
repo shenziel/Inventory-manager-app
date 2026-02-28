@@ -9,11 +9,11 @@ public class AuthService {
         this.userService = userService;
     }
 
-     public boolean login(String email, String password) {
-         return userService.login(email, password);
+     public boolean login(String username, String password) {
+         return userService.login(username, password);
      }
 
-     public User registerAdmin(String email, String password) {
+     public User registerAdmin(String username, String password) {
          return null;
      }
 
@@ -21,8 +21,8 @@ public class AuthService {
         return null;
     }
 
-     public boolean logout(String email) {
-         return userService.logout(email);
+     public boolean logout(String username) {
+         return userService.logout(username);
      }
 
      public void deleteUser(Long id) {

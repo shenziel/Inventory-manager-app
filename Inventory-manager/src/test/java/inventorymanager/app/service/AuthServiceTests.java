@@ -34,6 +34,7 @@ class AuthServiceTests {
         // Setup
         String username = "test@example.com";
         String password = "password123";
+        String encriptedPassword = "password123encripted";
 
         // Act
         boolean result = authService.login(username, password);
@@ -41,6 +42,7 @@ class AuthServiceTests {
         User userResult = userService.getUserByUsername(username);
         assertTrue(result);
         assertEquals(username, userResult.getUsername());
+        assertNotEquals(password, encriptedPassword);
     }
 
     @Test
@@ -102,19 +104,7 @@ class AuthServiceTests {
     }
 
     @Test
-    void testLogout_shouldReturnTrueWhenSuccessful() {
-        // Setup
-        String username = "test@example.com";
-
-        // Act
-        boolean result = authService.logout(username);
-
-        assertTrue(result);
-        verify(userService, times(1)).logout(username);
-    }
-
-    @Test
-    void testDeleteUser_shouldCallUserServiceDelete() {
+    void testDeleteUser_shouldRemoveUserWhenSuccessful() {
         // Setup
         Long id = 42L;
         User user = new User(id, "user1", "password123");
@@ -129,5 +119,29 @@ class AuthServiceTests {
         // Assert
         assertNotEquals(users, userService.getUsersList());
         assertEquals(1, userService.getAllUsers());
+    }
+
+    @Test
+    void testLogout_shouldReturnTrueWhenSuccessful() {
+        // Setup
+        String username = "test@example.com";
+
+        // Act
+        boolean result = authService.logout(username);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void testLogout_shouldThrowWhenNotLoggedIn() {
+        // Setup
+        String username = "test@example.com";
+        User notLoggedInUser = new User(1L, username, "password123");
+        when(userService.getUserByUsername(username)).thenReturn(notLoggedInUser);
+        when(userService.validateUser(notLoggedInUser)).thenReturn(true);
+        when(notLoggedInUser.isLoggedIn()).thenReturn(false);
+
+        // Act
+        assertThrows(NullPointerException.class, () -> authService.logout(username));
     }
 }

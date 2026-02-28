@@ -11,7 +11,7 @@ public class UserService {
 
     private final Map<Long, User> users = new HashMap<>();
 
-    private User createUser(String email, String password) {
+    private User createUser(String username, String password) {
         return null;
     }
     public Map<Long, User> getUsersList() {
@@ -32,19 +32,19 @@ public class UserService {
         return false;
     }
 
-    public boolean login(String email, String password) {
+    public boolean login(String username, String password) {
         return false;
     }
 
-    public User registerAdmin(String email, String password) {
+    public User registerAdmin(String username, String password) {
         return null;
     }
 
-    public User registerManager(String email, String password) {
+    public User registerManager(String username, String password) {
         return null;
     }
 
-    public boolean logout(String email) {
+    public boolean logout(String username) {
         return false;
     }
 
