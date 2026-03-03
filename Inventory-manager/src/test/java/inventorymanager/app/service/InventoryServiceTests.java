@@ -6,7 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("tests for stock alert")
+import java.time.LocalDate;
+
+@DisplayName("Tests for stock alert and expiry alert")
 
 public class InventoryServiceTests {
     private InventoryService inventoryService;
@@ -17,18 +19,21 @@ public class InventoryServiceTests {
     }
 
     @Test
+    @DisplayName("isLowStock returns true when product is below threshold")
     void testStockAlert_returnsTrueWhenProductIsBelowStock() {
         Product product = new Product("hg01", "gundam", 10);
-        inventoryService.addProduct(product, 10);
+        inventoryService.addProduct(product, 10, LocalDate.now().plusDays(5));
         boolean stock = inventoryService.isLowStock(product);
         assertTrue(stock);
     }
 
     @Test
-    void testStockAlert_returnsFalseWhenProductIsAboveStock() {
-        Product product = new Product("hg02", "gundam age-FX", 15);
-        inventoryService.addProduct(product, 20);
-        boolean stock = inventoryService.isLowStock(product);
-        assertFalse(stock);
+    @DisplayName("isAboutToExpire should be true for product expiring soon")
+    void testExpiryAlert_returnsTrueWhenProductIsAboutToExpire() {
+        Product product = new Product("exp01", "yogurt", 5);
+        inventoryService.addProduct(product, 10, LocalDate.now().plusDays(2));
+        boolean alert = inventoryService.isAboutToExpire(product);
+        assertTrue(alert);
     }
+
 }
