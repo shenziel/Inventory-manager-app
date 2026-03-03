@@ -25,4 +25,8 @@ public class InventoryService {
     public boolean isLowStock(Product product) {
         return false;
     }
+
+    public boolean isAboutToExpire(Product product) {
+        return false;
+    }
 }
