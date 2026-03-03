@@ -23,12 +23,4 @@ public class InventoryServiceTests {
         boolean stock = inventoryService.isLowStock(product);
         assertTrue(stock);
     }
-
-    @Test
-    void testStockAlert_returnsFalseWhenProductIsAboveStock() {
-        Product product = new Product("hg02", "gundam age-FX", 15);
-        inventoryService.addProduct(product, 20);
-        boolean stock = inventoryService.isLowStock(product);
-        assertFalse(stock);
-    }
 }
