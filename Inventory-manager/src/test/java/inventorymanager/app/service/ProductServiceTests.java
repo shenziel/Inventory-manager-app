@@ -40,6 +40,7 @@ public class ProductServiceTests {
         inventoryService.addProduct(product, 10);
         Product updatedProduct = new Product("hg01", "gundam mk2", 15);
         Product result = inventoryService.updateProduct("hg01", updatedProduct);
+        assertNotNull(result);
         assertEquals("gundam mk2", result.name());
         assertEquals(15, result.price());
     }
