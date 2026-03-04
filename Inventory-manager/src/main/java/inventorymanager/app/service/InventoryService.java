@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class InventoryService {
     //later when tests are done
-    public void addProduct(Product product, int quantity, LocalDate expiry) {}
+    public void addProduct(String name, double price, int quantity, LocalDate expiry) {}
 
     Product getProduct(String id) {
         return null;

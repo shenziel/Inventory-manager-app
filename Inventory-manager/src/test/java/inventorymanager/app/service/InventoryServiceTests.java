@@ -22,7 +22,7 @@ public class InventoryServiceTests {
     @DisplayName("isLowStock returns true when product is below threshold")
     void testStockAlert_returnsTrueWhenProductIsBelowStock() {
         Product product = new Product("hg01", "gundam", 10);
-        inventoryService.addProduct(product, 10, LocalDate.now().plusDays(5));
+        inventoryService.addProduct("Donut", 13.4, 10, LocalDate.now().plusDays(5));
         boolean stock = inventoryService.isLowStock(product);
         assertTrue(stock);
     }
@@ -31,7 +31,7 @@ public class InventoryServiceTests {
     @DisplayName("isAboutToExpire should be true for product expiring soon")
     void testExpiryAlert_returnsTrueWhenProductIsAboutToExpire() {
         Product product = new Product("exp01", "yogurt", 5);
-        inventoryService.addProduct(product, 10, LocalDate.now().plusDays(2));
+        inventoryService.addProduct("Donut", 13.4, 10, LocalDate.now().plusDays(2));
         boolean alert = inventoryService.isAboutToExpire(product);
         assertTrue(alert);
     }
