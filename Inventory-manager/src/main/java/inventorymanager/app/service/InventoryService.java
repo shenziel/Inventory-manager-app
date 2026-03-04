@@ -18,11 +18,11 @@ public class InventoryService {
         return null;
     }
 
-    public boolean isLowStock(Product product) {
+    public boolean isLowStock(String name) {
         return false;
     }
 
-    public boolean isAboutToExpire(Product product) {
+    public boolean isAboutToExpire(String id) {
         return false;
     }
 }
