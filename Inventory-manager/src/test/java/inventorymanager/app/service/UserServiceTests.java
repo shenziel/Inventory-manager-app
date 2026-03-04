@@ -2,54 +2,73 @@ package inventorymanager.app.service;
 
 import inventorymanager.app.model.User;
 import static org.junit.jupiter.api.Assertions.*;
+
+import inventorymanager.app.model.UserRoles;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Map;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class UserServiceTests {
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     private UserService userService;
 
     @BeforeEach
     void setUp() {
-        userService = new UserService();
+        userService = new UserService(passwordEncoder);
     }
 
     @Test
-    void testAddUser_ReturnsTrueAndCreatesUser() {
-        User user = new User(1L, "user1", "password123");
-        boolean result = userService.addUser(user);
-        assertTrue(result);
-        assertEquals(1, userService.getAllUsers());
+    void testRegisterManager_ReturnsTrueAndCreatesUserWithManagerRole() {
+        String username = "user1";
+        User result = userService.registerManager(username, "password123");
+        assertNotNull(result);
+        assertEquals(UserRoles.MANAGER, result.getRole());
     }
 
     @Test
-    void testAddUser_shouldNotAddDuplicateUser() {
-        User user = new User(1L, "user1", "password123");
-        boolean addUser = userService.addUser(user);
-        boolean addUser1 = userService.addUser(user);
-        assertTrue(addUser);
-        assertFalse(addUser1);
-        assertEquals(1, userService.getAllUsers());
+    void testRegisterAdmin_ReturnsTrueAndCreatesUserWithAdminRole() {
+        String username = "user1";
+        String password = "password123";
+        User result = userService.registerAdmin(username, password);
+        assertNotNull(result);
+        assertEquals(UserRoles.ADMIN, result.getRole());
     }
 
     @Test
-    void testAddUser_shouldNotAddNullUserAndThrowException() {
-        assertThrows(NullPointerException.class, () -> userService.addUser(null));
-        assertEquals(0, userService.getAllUsers());
+    void testRegisterManager_shouldNotCreateDuplicateUser() {
+        String username = "username1";
+        String password = "password1";
+        assertThrows(RuntimeException.class, () -> userService.registerManager(username, password));
+        assertEquals(1, userService.getUsersCount());
+    }
+
+    @Test
+    void testRegisterManager_shouldNotCreateUserWithNullEmailAndThrowException() {
+        assertThrows(NullPointerException.class, () -> userService.registerManager(null, "password123"));
+        assertEquals(0, userService.getUsersCount());
+    }
+
+    @Test
+    void testRegisterManager_shouldNotCreateUserWithNullPasswordAndThrowException() {
+        assertThrows(NullPointerException.class, () -> userService.registerManager("user1", null));
+        assertEquals(0, userService.getUsersCount());
     }
 
     @Test
     void testGetUserById_ReturnsExistingUser() {
-        User user = new User(1L, "user1", "password123");
-        userService.addUser(user);
-        User userReturned = userService.getUserById(1L);
+        User user = new User("user1", "password123");
+        userService.registerManager("user1", "password123");
+        User userReturned = userService.getUserById("1L");
         assertNotNull(userReturned);
         assertEquals(user, userReturned);
     }
@@ -61,32 +80,28 @@ class UserServiceTests {
 
     @Test
     void testGetUserById_ReturnsNullForNonExistingUser() {
-        assertThrows(NullPointerException.class, () -> userService.getUserById(999L));
+        assertThrows(NullPointerException.class, () -> userService.getUserById("999L"));
     }
 
     @Test
-    void testGetAllUsers_ReturnsAllUsers() {
-        User user = new User(1L, "user1", "password123");
-        userService.addUser(user);
-        Map<Long, User> users = userService.getUsersList();
-        assertEquals(1, users.size());
+    void testGetAllUsers_ReturnsUsersCount() {
+        userService.registerManager("user1", "password123");
+        int users = userService.getUsersCount();
+        assertEquals(1, users);
     }
 
     @Test
     void testRemoveUser_ReturnsTrueAndRemovesUser() {
-        User user = new User(1L, "user1", "password123");
-        userService.addUser(user);
-        User user1 = new User(2L, "user2", "password123");
-        userService.addUser(user1);
-        boolean result = userService.removeUser(1L);
+        userService.registerManager("user1", "password123");
+        userService.registerManager("user1", "password123");
+        boolean result = userService.removeUser("1L");
         assertTrue(result);
-        assertEquals(1, userService.getAllUsers());
+        assertEquals(1, userService.getUsersCount());
     }
 
     @Test
     void testRemoveUser_ReturnsFalseForNonExistingUser() {
-        boolean result = userService.removeUser(999L);
-        assertFalse(result);
+        assertThrows(NullPointerException.class, () -> userService.removeUser("999L"));
     }
 
 }

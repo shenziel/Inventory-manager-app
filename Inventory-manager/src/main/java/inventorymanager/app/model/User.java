@@ -1,31 +1,26 @@
 package inventorymanager.app.model;
 
-public class User {
-    public Long id;
-    public  String username;
-    public String password;
-    public String email;
+import lombok.Getter;
+import lombok.Setter;
 
-    public User(Long id, String username, String password) {
+import java.util.UUID;
+@Getter
+@Setter
+public class User {
+
+    private String id;
+    private String username;
+    private String password;
+    private String email;
+    private boolean loggedIn;
+    private UserRoles role;
+
+
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.id = id;
+        this.loggedIn = false;
+        this.id = UUID.randomUUID().toString();
     }
 
-    public Long getId() {
-        return id;
-    }
-    public String getUsername() {
-        return username;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
