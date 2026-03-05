@@ -29,6 +29,10 @@ public class UserService {
         return null;
     }
 
+    public User getUserByUsername(String username) {
+        return null;
+    }
+
     public boolean removeUser(String id) {
         return false;
     }
