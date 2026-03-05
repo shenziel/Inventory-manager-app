@@ -1,11 +1,10 @@
 package inventorymanager.app.service;
 import inventorymanager.app.model.Product;
+import java.time.LocalDate;
 
 public class InventoryService {
     //later when tests are done
-    public void addProduct(Product product, int quantity) {
-
-    }
+    public void addProduct(String name, double price, int quantity, LocalDate expiry) {}
 
     Product getProduct(String id) {
         return null;
@@ -19,7 +18,11 @@ public class InventoryService {
         return null;
     }
 
-    public boolean isLowStock(Product product) {
+    public boolean isLowStock(String name) {
+        return false;
+    }
+
+    public boolean isAboutToExpire(String id) {
         return false;
     }
 }
