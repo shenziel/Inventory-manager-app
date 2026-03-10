@@ -46,13 +46,6 @@ public class UserService {
     public int getUsersCount() {
         return -1;
     }
-
-    /**
-     * Checks if a user has a specific role
-     * @param userId the ID of the user
-     * @param role the role to check
-     * @return true if user has the specified role, false otherwise
-     */
     public boolean hasRole(String userId, UserRoles role) {
         return false;
     }
@@ -61,12 +54,6 @@ public class UserService {
         return null;
     }
 
-    /**
-     * Assigns a role to a user by their ID
-     * @param userId the ID of the user
-     * @param role the role to assign
-     * @return true if role was assigned successfully, false if user not found
-     */
     public boolean assignRole(String userId, UserRoles role) {
         return false;
     }
