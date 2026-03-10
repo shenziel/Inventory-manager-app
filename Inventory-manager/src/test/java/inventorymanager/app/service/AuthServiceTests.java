@@ -29,7 +29,7 @@ class AuthServiceTests {
         authService = new AuthService(userService);
     }
 
-    //@Test
+    @Test
     void testUserLogin_shouldReturnUserWhenLoginSuccessful() {
         // Setup
         String username = "test@example.com";
@@ -45,7 +45,7 @@ class AuthServiceTests {
         assertNotEquals(password, encriptedPassword);
     }
 
-    //@Test
+    @Test
     void testUserLogin_shouldThrowWhenCredentialsInvalid() {
         // Setup
         String username = "username1";
@@ -58,14 +58,14 @@ class AuthServiceTests {
         assertFalse(result);
     }
 
-    //@Test
+    @Test
     void testUserLogin_shouldThrowWhenUsernameIsNull() {
         // Setup
         String password = "password123";
         assertThrows(NullPointerException.class, () -> authService.login(null, password));
     }
 
-    //@Test
+    @Test
     void testRegisterManager_shouldCreateNewManagerUserIfNonExisting() {
         // Setup
         String username = "newuser@example.com";
@@ -78,7 +78,7 @@ class AuthServiceTests {
         assertEquals(1, userService.getUsersCount());
     }
 
-    //@Test
+    @Test
     void testRegisterAdmin_shouldCreateNewAdminUserIfNonExisting() {
         // Setup
         String username = "newuser@example.com";
@@ -91,7 +91,7 @@ class AuthServiceTests {
         assertEquals(1, userService.getUsersCount());
     }
 
-    //@Test
+    @Test
     void testRegister_shouldNotCreateUserIfAlreadyExistsAndThrow() {
         // Setup
         String username = "user1";
@@ -103,7 +103,7 @@ class AuthServiceTests {
         assertEquals(existingUser.getUsername(), userService.getUserByUsername(username).getUsername());
     }
 
-    //@Test
+    @Test
     void testDeleteUser_shouldRemoveUserWhenSuccessful() {
         // Setup
         String id = "42L";
@@ -121,7 +121,7 @@ class AuthServiceTests {
         assertEquals(1, userService.getUsersCount());
     }
 
-    //@Test
+    @Test
     void testLogout_shouldReturnTrueWhenSuccessful() {
         // Setup
         String username = "test@example.com";
@@ -132,7 +132,7 @@ class AuthServiceTests {
         assertTrue(result);
     }
 
-    //@Test
+    @Test
     void testLogout_shouldThrowWhenNotLoggedIn() {
         // Setup
         String username = "test@example.com";

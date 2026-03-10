@@ -23,7 +23,7 @@ public class InventoryServiceTests {
     void testStockAlert_returnsTrueWhenProductIsBelowStock() {
         Product product = new Product("hg01", "gundam", 10);
         inventoryService.addProduct("Donut", 13.4, 10, LocalDate.now().plusDays(5));
-        boolean stock = inventoryService.isLowStock(product);
+        boolean stock = inventoryService.isLowStock(product.name());
         assertTrue(stock);
     }
 
@@ -32,7 +32,7 @@ public class InventoryServiceTests {
     void testExpiryAlert_returnsTrueWhenProductIsAboutToExpire() {
         Product product = new Product("exp01", "yogurt", 5);
         inventoryService.addProduct("Donut", 13.4, 10, LocalDate.now().plusDays(2));
-        boolean alert = inventoryService.isAboutToExpire(product);
+        boolean alert = inventoryService.isAboutToExpire(product.name());
         assertTrue(alert);
     }
 
