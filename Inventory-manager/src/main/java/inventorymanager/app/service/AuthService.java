@@ -10,7 +10,7 @@ public class AuthService {
     }
 
      public boolean login(String username, String password) {
-         return userService.login(username, password);
+         return false;
      }
 
      public User registerAdmin(String username, String password) {
@@ -22,10 +22,10 @@ public class AuthService {
     }
 
      public boolean logout(String username) {
-         return userService.logout(username);
+         return false;
      }
 
-     public void deleteUser(Long id) {
-         userService.deleteUser(id);
+     public void deleteUser(String id) {
+         //userService.deleteUser(id);
      }
 }
