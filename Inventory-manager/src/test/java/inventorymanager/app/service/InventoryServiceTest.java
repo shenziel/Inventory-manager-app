@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @DisplayName("Tests for stock alert and expiry alert")
 
-public class InventoryServiceTests {
+public class InventoryServiceTest {
     private InventoryService inventoryService;
 
     @BeforeEach

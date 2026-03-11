@@ -1,9 +1,11 @@
 package inventorymanager.app.service;
 
 import inventorymanager.app.model.User;
+import org.springframework.stereotype.Service;
 
 import java.util.InputMismatchException;
 
+@Service
 public class AuthService {
 
     private  final UserService userService;

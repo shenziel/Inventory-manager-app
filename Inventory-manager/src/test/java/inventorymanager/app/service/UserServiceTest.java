@@ -2,7 +2,6 @@ package inventorymanager.app.service;
 
 import inventorymanager.app.model.User;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 import inventorymanager.app.model.UserRoles;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-class UserServiceTests {
+class UserServiceTest {
 
     @Mock
     private PasswordEncoder passwordEncoder;
