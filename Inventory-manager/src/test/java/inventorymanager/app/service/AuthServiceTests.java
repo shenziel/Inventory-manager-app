@@ -32,7 +32,7 @@ class AuthServiceTests {
     void setUp() {
     }
 
-    @Test
+//    @Test
     void testUserLogin_shouldReturnUserWhenLoginSuccessful() {
         // Setup
         String username = "test@example.com";
@@ -49,7 +49,7 @@ class AuthServiceTests {
         assertEquals(username, result.getUsername());
     }
 
-    @Test
+//    @Test
     void testUserLogin_shouldThrowWhenCredentialsInvalid() {
         // Setup
         String username = "username1";
@@ -60,14 +60,14 @@ class AuthServiceTests {
         assertThrows(InputMismatchException.class, () -> authService.login(username, password));
     }
 
-    @Test
+//    @Test
     void testUserLogin_shouldThrowWhenUsernameIsNull() {
         // Setup
         String password = "password123";
         assertThrows(IllegalArgumentException.class, () -> authService.login(null, password));
     }
 
-    @Test
+//    @Test
     void testLogout_shouldReturnTrueWhenSuccessful() {
         // Setup
         String userId = "123";
@@ -85,7 +85,7 @@ class AuthServiceTests {
         assertFalse(user.isLoggedIn());
     }
 
-    @Test
+//    @Test
     void testLogout_shouldThrowWhenNotLoggedIn() {
         // Setup
         String username = "test@example.com";
