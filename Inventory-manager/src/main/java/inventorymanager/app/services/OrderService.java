@@ -1,5 +1,11 @@
-package inventorymanager.app;
+package inventorymanager.app.services;
 
+import inventorymanager.app.ForbiddenException;
+import inventorymanager.app.NotFoundException;
+import inventorymanager.app.Order;
+import inventorymanager.app.OrderReceipt;
+import inventorymanager.app.Role;
+import inventorymanager.app.User;
 import inventorymanager.app.repository.*;
 
 import java.time.Clock;

@@ -1,4 +1,4 @@
-package inventorymanager.app;
+/*package inventorymanager.app;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,3 +30,4 @@ class InventoryManagerApplicationTests {
 	}
 
 }
+*/

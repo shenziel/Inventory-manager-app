@@ -1,7 +1,7 @@
 package inventorymanager.app;
 
 import inventorymanager.app.repository.*;
-import inventorymanager.app.services.*;
+import inventorymanager.app.services.OrderService;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -9,10 +9,8 @@ import static org.mockito.Mockito.*;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
-import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.*;
 
 class OrderServiceTest {
 

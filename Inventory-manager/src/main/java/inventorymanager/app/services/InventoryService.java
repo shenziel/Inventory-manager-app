@@ -13,10 +13,7 @@ public class InventoryService {
     }
 
     public int getProductQuantity(UUID productId, User user) {
-        if (user.getRole() != Role.MANAGER) {
-            throw new ForbiddenException("Only managers can check product quantity");
-        }
 
-        return repository.getQuantity(productId);
+        return 0;
     }
 }
