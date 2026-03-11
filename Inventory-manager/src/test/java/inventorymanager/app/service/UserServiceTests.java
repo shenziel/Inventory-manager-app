@@ -2,6 +2,7 @@ package inventorymanager.app.service;
 
 import inventorymanager.app.model.User;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 import inventorymanager.app.model.UserRoles;
 import org.junit.jupiter.api.BeforeEach;
