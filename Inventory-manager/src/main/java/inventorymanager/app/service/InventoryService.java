@@ -24,6 +24,10 @@ public class InventoryService {
         }
     }
 
+    public int getInventorySize() {
+        return inventory.size();
+    }
+
     Product getProduct(String id) {
         return inventory.get(id);
     }
