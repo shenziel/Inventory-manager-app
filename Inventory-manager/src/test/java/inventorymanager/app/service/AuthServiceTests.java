@@ -9,8 +9,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,125 +24,78 @@ class AuthServiceTests {
     @InjectMocks
     private AuthService authService;
     @Mock
+    private PasswordEncoder passwordEncoder;
+    @Mock
     private UserService userService;
 
     @BeforeEach
     void setUp() {
-        authService = new AuthService(userService);
     }
 
-   // @Test
+    @Test
     void testUserLogin_shouldReturnUserWhenLoginSuccessful() {
         // Setup
         String username = "test@example.com";
         String password = "password123";
-        String encriptedPassword = "password123encripted";
+        String encodedPassword = "encodedPassword";
+        User user = new User(username, encodedPassword, UserRoles.MANAGER);
+        when(userService.checkUserCredentials(username, password)).thenReturn(user);
 
         // Act
-        boolean result = authService.login(username, password);
+        User result = authService.login(username, password);
 
-        User userResult = userService.getUserByUsername(username);
-        assertTrue(result);
-        assertEquals(username, userResult.getUsername());
-        assertNotEquals(password, encriptedPassword);
+        // Assert
+        assertNotNull(result);
+        assertEquals(username, result.getUsername());
     }
 
-   //@Test
+    @Test
     void testUserLogin_shouldThrowWhenCredentialsInvalid() {
         // Setup
         String username = "username1";
         String password = "wrongpass";
+        userService.registerManager(username, "rightPassword");
 
         // Act
-        assertThrows(Exception.class, () -> authService.login(username, password));
-        boolean result = authService.login(username, password);
-
-        assertFalse(result);
+        assertThrows(InputMismatchException.class, () -> authService.login(username, password));
     }
 
-    //@Test
+    @Test
     void testUserLogin_shouldThrowWhenUsernameIsNull() {
         // Setup
         String password = "password123";
-        assertThrows(NullPointerException.class, () -> authService.login(null, password));
+        assertThrows(IllegalArgumentException.class, () -> authService.login(null, password));
     }
 
-    //@Test
-    void testRegisterManager_shouldCreateNewManagerUserIfNonExisting() {
-        // Setup
-        String username = "newuser@example.com";
-        String password = "newpassword";
-
-        User manager = authService.registerManager(username, password);
-
-        assertNotNull(manager);
-        assertEquals(UserRoles.MANAGER, manager.getRole());
-        assertEquals(1, userService.getUsersCount());
-    }
-
-    //@Test
-    void testRegisterAdmin_shouldCreateNewAdminUserIfNonExisting() {
-        // Setup
-        String username = "newuser@example.com";
-        String password = "newpassword";
-
-        User admin = authService.registerAdmin(username, password);
-
-        assertNotNull(admin);
-        assertEquals(UserRoles.ADMIN, admin.getRole());
-        assertEquals(1, userService.getUsersCount());
-    }
-
-    //@Test
-    void testRegister_shouldNotCreateUserIfAlreadyExistsAndThrow() {
-        // Setup
-        String username = "user1";
-        String password = "password123";
-        User existingUser = new User(username, password, UserRoles.MANAGER);
-        when(userService.getUserByUsername(username)).thenReturn(existingUser);
-        assertThrows(NullPointerException.class, () -> authService.registerManager(username, password));
-        assertEquals(1, userService.getUsersCount());
-        assertEquals(existingUser.getUsername(), userService.getUserByUsername(username).getUsername());
-    }
-
-    //@Test
-    void testDeleteUser_shouldRemoveUserWhenSuccessful() {
-        // Setup
-        String id = "42L";
-        User user = new User("user1", "password123", UserRoles.MANAGER);
-        User user1 = new User("user2", "password123", UserRoles.ADMIN);
-        Map<String, User> users = new HashMap<>();
-        users.put(id, user);
-        users.put("41L", user1);
-        when(userService.getUsersList()).thenReturn(users);
-        // Act
-        authService.deleteUser(id);
-
-        // Assert
-        assertNotEquals(users, userService.getUsersList());
-        assertEquals(1, userService.getUsersCount());
-    }
-
-    //@Test
+    @Test
     void testLogout_shouldReturnTrueWhenSuccessful() {
         // Setup
+        String userId = "123";
         String username = "test@example.com";
+        String encodedPassword = "encodedPassword";
+        User user = new User(username, encodedPassword, UserRoles.MANAGER);
+        user.setId(userId);
+        user.setLoggedIn(true);
+        when(userService.getUserById(userId)).thenReturn(user);
 
         // Act
-        boolean result = authService.logout(username);
+        boolean result = authService.logout(userId);
 
         assertTrue(result);
+        assertFalse(user.isLoggedIn());
     }
 
-    //@Test
+    @Test
     void testLogout_shouldThrowWhenNotLoggedIn() {
         // Setup
         String username = "test@example.com";
         User notLoggedInUser = new User(username, "password123", UserRoles.MANAGER);
         notLoggedInUser.setLoggedIn(false);
-        when(userService.getUserByUsername(username)).thenReturn(notLoggedInUser);
+        String userId = "123";
+        notLoggedInUser.setId(userId);
+        when(userService.getUserById(userId)).thenReturn(notLoggedInUser);
 
         // Act
-        assertThrows(NullPointerException.class, () -> authService.logout(username));
+        assertThrows(IllegalStateException.class, () -> authService.logout(userId));
     }
 }
