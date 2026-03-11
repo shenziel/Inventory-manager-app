@@ -22,8 +22,8 @@ public class UserService {
         return users;
     }
     public void setUsers(List<User> users) {}
-    public int getAllUsers() {
-        return users.size();
+    public List<User> getAllUsers() {
+        return users.values().stream().toList();
     }
     public User getUserById(String id) {
         if (id == null) {
@@ -116,5 +116,13 @@ public class UserService {
         }
         user.setRole(role);
         return true;
+    }
+
+    public User checkUserCredentials(String username, String password) {
+        User user = getUserByUsername(username);
+        if (user == null) {
+            throw new NullPointerException("User not found");
+        }
+        return passwordEncoder.matches(password, user.getPassword())? user: null;
     }
 }
