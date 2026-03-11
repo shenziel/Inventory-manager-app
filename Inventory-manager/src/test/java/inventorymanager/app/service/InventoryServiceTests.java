@@ -76,5 +76,5 @@ public class InventoryServiceTests {
         assertEquals("gundam", result.getName());
         assertEquals(10, result.getPrice());
     }
-    
+
 }
