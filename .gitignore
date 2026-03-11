@@ -4,3 +4,4 @@
 .idea/modules.xml
 .idea/workspace.xml
 Inventory-manager/target
+Inventory-manager/src/main/resources/secrets.properties
