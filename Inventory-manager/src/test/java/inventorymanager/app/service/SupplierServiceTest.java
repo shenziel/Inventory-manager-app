@@ -17,7 +17,6 @@ class SupplierServiceTest {
         svc = new SupplierService();
     }
 
-
     @Test
     @DisplayName("addSupplier should add and later return the supplier")
     void addSupplier_success() {
