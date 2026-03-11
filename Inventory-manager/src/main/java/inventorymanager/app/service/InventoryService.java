@@ -28,11 +28,11 @@ public class InventoryService {
         return inventory.size();
     }
 
-    Product getProduct(String id) {
+   public Product getProduct(String id) {
         return inventory.get(id);
     }
 
-    boolean removeProduct(String id) {
+    public boolean removeProduct(String id) {
         if (inventory.containsKey(id)) {
             inventory.remove(id);
             return true;
@@ -40,7 +40,7 @@ public class InventoryService {
         return false;
     }
 
-    Product updateProduct(String id, Product updated) {
+    public Product updateProduct(String id, Product updated) {
         if (inventory.containsKey(id)) {
             inventory.put(id, updated);
             return updated;
