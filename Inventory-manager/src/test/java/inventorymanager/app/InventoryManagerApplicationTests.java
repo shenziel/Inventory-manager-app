@@ -1,4 +1,4 @@
-/*package inventorymanager.app;
+package inventorymanager.app;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,11 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class InventoryManagerApplicationTests {
-
-	//comment here
-	@Test
-	void contextLoads() {
-	}
+    // comment here
+    @Test
+    void contextLoads() {
+    }
 
     @DisplayName("Test check for Isogram")
     @Test
@@ -23,11 +22,10 @@ class InventoryManagerApplicationTests {
         assertEquals(true, InventoryManagerApplication.checkIsogram("importance"));
     }
 
-	@Test
-	void simpleArithmeticTest() {
-		// TODO: [Delete]
-		assertEquals(2, InventoryManagerApplication.addition());
-	}
+    @Test
+    void simpleArithmeticTest() {
+        // TODO: [Delete]
+        assertEquals(2, InventoryManagerApplication.addition());
+    }
 
 }
-*/
