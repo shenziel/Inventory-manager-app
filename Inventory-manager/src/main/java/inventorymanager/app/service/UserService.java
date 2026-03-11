@@ -117,4 +117,12 @@ public class UserService {
         user.setRole(role);
         return true;
     }
+
+    public User checkUserCredentials(String username, String password) {
+        User user = getUserByUsername(username);
+        if (user == null) {
+            throw new NullPointerException("User not found");
+        }
+        return passwordEncoder.matches(password, user.getPassword())? user: null;
+    }
 }
