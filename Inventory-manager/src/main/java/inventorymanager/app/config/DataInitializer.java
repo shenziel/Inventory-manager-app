@@ -17,14 +17,10 @@ public class DataInitializer implements ApplicationRunner {
 
     private final UserService userService;
     private final InventoryService inventoryService;
-    private final PasswordEncoder passwordEncoder;
 
-    public DataInitializer(UserService userService,
-                           InventoryService inventoryService,
-                           PasswordEncoder passwordEncoder) {
+    public DataInitializer(UserService userService, InventoryService inventoryService) {
         this.userService = userService;
         this.inventoryService = inventoryService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -35,7 +31,7 @@ public class DataInitializer implements ApplicationRunner {
 
     private void seedUsers() {
         if (userService.getUsersCount() == 0) {
-            userService.registerManager("admin", "admin123");
+            userService.registerManager("manager", "admin123");
             userService.registerAdmin("admin", "admin123");
             System.out.println("Users seeded.");
         }

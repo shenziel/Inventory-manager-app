@@ -13,6 +13,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class UserServiceTests {
@@ -25,6 +29,7 @@ class UserServiceTests {
     @BeforeEach
     void setUp() {
         userService = new UserService(passwordEncoder);
+        userService.setUsers(new ArrayList<>());
     }
 
     @Test
