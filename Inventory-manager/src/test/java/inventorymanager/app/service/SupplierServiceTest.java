@@ -56,9 +56,10 @@ class SupplierServiceTest {
     @Test
     @DisplayName("removeSupplier should return false for non-existing id")
     void removeSupplier_nonExisting() {
-        Supplier s = addsupplier();
-        assertNotNull(s);
-        assertThrows(RuntimeException.class, () -> svc.removeSupplier(s.getId()));
+        addsupplier();
+        // try removing an id that does not exist
+        boolean removed = svc.removeSupplier("missing");
+        assertFalse(removed);
     }
 
     @Test
