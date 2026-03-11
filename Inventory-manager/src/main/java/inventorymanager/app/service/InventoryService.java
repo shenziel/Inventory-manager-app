@@ -67,4 +67,9 @@ public class InventoryService {
         }
         return false;
     }
+
+    public void clearInventory() {
+        inventory.clear();
+        idCounter = 1;
+    }
 }
