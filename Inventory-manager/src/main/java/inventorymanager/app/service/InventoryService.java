@@ -1,7 +1,10 @@
 package inventorymanager.app.service;
 import inventorymanager.app.model.Product;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 
+@Service
 public class InventoryService {
     //later when tests are done
     public void addProduct(String name, double price, int quantity, LocalDate expiry) {}

@@ -1,10 +1,11 @@
 package inventorymanager.app.service;
 
 import inventorymanager.app.model.Supplier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-    // TODO: After test
+@Service
 public class SupplierService {
     void addSupplier(Supplier supplier){
 
