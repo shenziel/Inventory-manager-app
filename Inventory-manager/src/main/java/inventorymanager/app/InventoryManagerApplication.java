@@ -35,7 +35,7 @@ public class InventoryManagerApplication {
             if (characterArray[i] == characterArray[i + 1])
                 return false;
         }
-        return true;
+        return false;
     }
 
 }
