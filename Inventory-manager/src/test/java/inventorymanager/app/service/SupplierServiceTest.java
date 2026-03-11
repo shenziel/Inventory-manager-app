@@ -58,7 +58,7 @@ class SupplierServiceTest {
     void removeSupplier_nonExisting() {
         Supplier s = addsupplier();
         assertNotNull(s);
-        assertThrows(RuntimeException.class, () -> svc.removeSupplier(s.id()));
+        assertThrows(RuntimeException.class, () -> svc.removeSupplier(s.getId()));
     }
 
     @Test
@@ -68,8 +68,8 @@ class SupplierServiceTest {
 
         Supplier updated = svc.updateSupplier("s1", new Supplier("ignored", "NewName"));
         assertNotNull(updated);
-        assertEquals("s1", updated.id());
-        assertEquals("NewName", updated.name());
+        assertEquals("s1", updated.getId());
+        assertEquals("NewName", updated.getName());
 
         Supplier fromStore = svc.getSupplier("s1");
         assertEquals(updated, fromStore);
