@@ -17,8 +17,7 @@ class SupplierServiceTest {
         svc = new SupplierService();
     }
 
-
-   // @Test
+    @Test
     @DisplayName("addSupplier should add and later return the supplier")
     void addSupplier_success() {
         Supplier s = addsupplier();
@@ -28,7 +27,7 @@ class SupplierServiceTest {
         assertEquals(s, found);
     }
 
-   // @Test
+    @Test
     @DisplayName("addSupplier should throw when adding duplicate id")
     void addSupplier_duplicate_throws() {
         addsupplier();
@@ -37,13 +36,13 @@ class SupplierServiceTest {
         assertThrows(RuntimeException.class, () -> svc.addSupplier(s2), "expected duplicate add to throw");
     }
 
-  //  @Test
+    @Test
     @DisplayName("addSupplier should throw when supplier is null")
     void addSupplier_null_throws() {
         assertThrows(NullPointerException.class, () -> svc.addSupplier(null));
     }
 
-   // @Test
+    @Test
     @DisplayName("removeSupplier should remove existing and return true")
     void removeSupplier_existing() {
         addsupplier();
@@ -53,35 +52,36 @@ class SupplierServiceTest {
         assertNull(svc.getSupplier("s1"));
     }
 
-   // @Test
+    @Test
     @DisplayName("removeSupplier should return false for non-existing id")
     void removeSupplier_nonExisting() {
-        Supplier s = addsupplier();
-        assertNotNull(s);
-        assertThrows(RuntimeException.class, () -> svc.removeSupplier(s.id()));
+        addsupplier();
+        // try removing an id that does not exist
+        boolean removed = svc.removeSupplier("missing");
+        assertFalse(removed);
     }
 
-   // @Test
+    @Test
     @DisplayName("updateSupplier should update name while preserving id")
     void updateSupplier_success() {
         svc.addSupplier(new Supplier("s1", "OldName"));
 
         Supplier updated = svc.updateSupplier("s1", new Supplier("ignored", "NewName"));
         assertNotNull(updated);
-        assertEquals("s1", updated.id());
-        assertEquals("NewName", updated.name());
+        assertEquals("s1", updated.getId());
+        assertEquals("NewName", updated.getName());
 
         Supplier fromStore = svc.getSupplier("s1");
         assertEquals(updated, fromStore);
     }
 
-   // @Test
+    @Test
     @DisplayName("updateSupplier should throw when id does not exist")
     void updateSupplier_nonExisting_throws() {
         assertThrows(RuntimeException.class, () -> svc.updateSupplier("missing", new Supplier("x","y")));
     }
 
-   // @Test
+    @Test
     @DisplayName("methods should validate null or blank ids")
     void invalidId_checks() {
         assertThrows(IllegalArgumentException.class, () -> svc.getSupplier(null));
