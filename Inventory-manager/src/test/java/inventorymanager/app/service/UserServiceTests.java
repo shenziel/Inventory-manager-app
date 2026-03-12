@@ -27,7 +27,7 @@ class UserServiceTests {
         userService = new UserService(passwordEncoder);
     }
 
-//    @Test
+    @Test
     void testRegisterManager_ReturnsTrueAndCreatesUserWithManagerRole() {
         String username = "user1";
         User result = userService.registerManager(username, "password123");
@@ -35,7 +35,7 @@ class UserServiceTests {
         assertEquals(UserRoles.MANAGER, result.getRole());
     }
 
-//    @Test
+    @Test
     void testRegisterAdmin_ReturnsTrueAndCreatesUserWithAdminRole() {
         String username = "user1";
         String password = "password123";
@@ -45,7 +45,7 @@ class UserServiceTests {
         assertEquals(UserRoles.ADMIN, result.getRole());
     }
 
-//    @Test
+    @Test
     void testRegisterManager_shouldNotCreateDuplicateUser() {
         String username = "username1";
         String password = "password1";
@@ -55,18 +55,18 @@ class UserServiceTests {
         assertNotNull(userService.getUserByUsername(username));
     }
 
-//    @Test
+    @Test
     void testRegisterManager_shouldNotCreateUserWithNullEmailAndThrowException() {
         assertThrows(NullPointerException.class, () -> userService.registerManager(null, "password123"));
         assertEquals(0, userService.getUsersCount());
     }
 
-//    @Test
+    @Test
     void testRegisterManager_shouldNotCreateUserWithNullPasswordAndThrowException() {
         assertThrows(NullPointerException.class, () -> userService.registerManager("user1", null));
     }
 
-//    @Test
+    @Test
     void testGetUserById_ReturnsExistingUser() {
         User user = userService.registerManager("user1", "password123");
         User userReturned = userService.getUserById(user.getId());
@@ -74,24 +74,24 @@ class UserServiceTests {
         assertEquals(user.getUsername(), userReturned.getUsername());
     }
 
-//    @Test
+    @Test
     void testGetUserById_ThrowsExceptionForNullUser() {
         assertThrows(NullPointerException.class, () -> userService.getUserById(null));
     }
 
-//    @Test
+    @Test
     void testGetUserById_ReturnsNullForNonExistingUser() {
         assertThrows(NullPointerException.class, () -> userService.getUserById("999L"));
     }
 
-//    @Test
+    @Test
     void testGetAllUsers_ReturnsUsersCount() {
         userService.registerManager("user1", "password123");
         int users = userService.getUsersCount();
         assertEquals(1, users);
     }
 
-//    @Test
+    @Test
     void testRemoveUser_ReturnsTrueAndRemovesUser() {
         User user1 = userService.registerManager("user1", "password123");
         userService.registerManager("user2", "password123");
@@ -102,7 +102,7 @@ class UserServiceTests {
         assertNull(userService.getUserByUsername("user1"));
     }
 
-//    @Test
+    @Test
     void testRemoveUser_ReturnsFalseForNonExistingUser() {
         assertFalse(userService.removeUser("999L"));
     }
