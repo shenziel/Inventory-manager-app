@@ -1,9 +1,8 @@
-package inventorymanager.app;
+package inventorymanager.app.service;
 
 import inventorymanager.app.exception.ForbiddenException;
 import inventorymanager.app.model.*;
 import inventorymanager.app.repository.*;
-import inventorymanager.app.service.OrderService;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -12,8 +11,11 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.UUID;
+
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("unit")
 class OrderServiceTest {
 
     @Test

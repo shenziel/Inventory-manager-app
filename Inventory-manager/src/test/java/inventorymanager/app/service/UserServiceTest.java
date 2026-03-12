@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import inventorymanager.app.model.UserRoles;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 
+@Tag("unit")
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 

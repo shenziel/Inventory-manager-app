@@ -1,10 +1,10 @@
 package inventorymanager.app.integration;
 
 import inventorymanager.app.model.Product;
-import inventorymanager.app.repository.InventoryRepository;
 import inventorymanager.app.service.InventoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +16,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("integration")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("Integration Tests for ProductController")
 class ProductControllerIntegrationTest {
