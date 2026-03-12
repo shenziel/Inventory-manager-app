@@ -40,12 +40,16 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                sh 'mvn clean test -Dtags=unit'
+                dir('Inventory-manager') {
+                    sh 'mvn clean test'
+                }
             }
         }
         stage('Integration Tests') {
             steps {
-                sh 'mvn clean verify -Dtags=integration'
+                dir('Inventory-manager') {
+                    sh 'mvn clean verify -Dtags=integration'
+                }
             }
         }
     }
