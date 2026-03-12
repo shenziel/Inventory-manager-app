@@ -26,6 +26,7 @@ class SupplierControllerIntegrationTest {
 
     private MockMvc mockMvc;
 
+    @Autowired
     private SupplierService supplierService;
 
     private ObjectMapper objectMapper;
@@ -34,7 +35,6 @@ class SupplierControllerIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        supplierService = new SupplierService();
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         objectMapper = new ObjectMapper();
         if (supplierService != null) {

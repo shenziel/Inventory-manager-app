@@ -1,10 +1,7 @@
 package inventorymanager.app;
 
 import inventorymanager.app.exception.ForbiddenException;
-import inventorymanager.app.model.Order;
-import inventorymanager.app.model.OrderReceipt;
-import inventorymanager.app.model.User;
-import inventorymanager.app.model.UserRoles;
+import inventorymanager.app.model.*;
 import inventorymanager.app.repository.*;
 import inventorymanager.app.service.OrderService;
 
@@ -35,7 +32,9 @@ class OrderServiceTest {
         UUID supplierId = UUID.randomUUID();
 
         when(supplierRepo.existsById(supplierId.toString())).thenReturn(true);
-        when(service.suppliesProduct(supplierId, productId)).thenReturn(true);
+        Supplier supplier = new Supplier(supplierId.toString(), "Test Supplier");
+        supplier.getSuppliedProducts().add(productId);
+        when(supplierRepo.findById(supplierId.toString())).thenReturn(supplier);
         when(inventoryRepo.getQuantity(productId)).thenReturn(10);
 
         // Act

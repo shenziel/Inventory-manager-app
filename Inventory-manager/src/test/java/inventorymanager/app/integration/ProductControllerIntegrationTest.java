@@ -25,16 +25,14 @@ class ProductControllerIntegrationTest {
 
     private RestTemplate restTemplate = new RestTemplate();
 
+    @Autowired
     private InventoryService inventoryService;
 
     private static final String BASE_PATH = "/api/products";
 
-    @Autowired
-    private InventoryRepository inventoryRepository;
 
     @BeforeEach
     void setUp() {
-        inventoryService = new InventoryService(inventoryRepository);
         inventoryService.clearInventory();
     }
 
