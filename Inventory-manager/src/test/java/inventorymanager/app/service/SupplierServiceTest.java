@@ -2,11 +2,13 @@ package inventorymanager.app.service;
 
 import inventorymanager.app.model.Supplier;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("unit")
 @DisplayName("SupplierService TDD - failing tests initially")
 class SupplierServiceTest {
 

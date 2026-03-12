@@ -3,11 +3,13 @@ package inventorymanager.app.service;
 import inventorymanager.app.model.User;
 import inventorymanager.app.model.UserRoles;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class UserService {
 
     private final Map<String, User> users = new HashMap<>();
@@ -95,12 +97,25 @@ public class UserService {
      * @return true if user has the specified role, false otherwise
      */
     public boolean hasRole(String userId, UserRoles role) {
+        if (userId == null) {
+            throw new NullPointerException("User ID cannot be null");
+        }
+        if (role == null) {
+            throw new NullPointerException("Role cannot be null");
+        }
         UserRoles userRole = getRoleByUserId(userId);
         return userRole != null && userRole == role;
     }
 
     private UserRoles getRoleByUserId(String userId) {
-        return null;
+        if (userId == null) {
+            throw new NullPointerException("User ID cannot be null");
+        }
+        User user = users.get(userId);
+        if (user == null) {
+            return null;
+        }
+        return user.getRole();
     }
 
     /**

@@ -38,13 +38,19 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('Unit Tests') {
             steps {
                 dir('Inventory-manager') {
-                    sh 'mvn test'
+                    sh 'mvn clean test'
                 }
             }
-            post { always { junit 'Inventory-manager/target/surefire-reports/*.xml' } }
+        }
+        stage('Integration Tests') {
+            steps {
+                dir('Inventory-manager') {
+                    sh 'mvn clean verify -Dtags=integration'
+                }
+            }
         }
     }
 }

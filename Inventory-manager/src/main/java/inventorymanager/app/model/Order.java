@@ -1,4 +1,4 @@
-package inventorymanager.app;
+package inventorymanager.app.model;
 
 import java.time.Instant;
 import java.util.UUID;

@@ -1,14 +1,26 @@
 package inventorymanager.app.service;
+import inventorymanager.app.exception.ForbiddenException;
 import inventorymanager.app.model.Product;
-import java.time.LocalDate;
+import inventorymanager.app.model.User;
+import inventorymanager.app.model.UserRoles;
+import inventorymanager.app.repository.InventoryRepository;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+@Service
 public class InventoryService {
-    //later when tests are done
-    private Map<String, Product> inventory = new HashMap<>();
+    private final Map<String, Product> inventory = new HashMap<>();
     private int idCounter = 1;
+
+    private final InventoryRepository repository;
+
+    public InventoryService(InventoryRepository repository) {
+        this.repository = repository;
+    }
 
     public void addProduct(String name, double price, int quantity, LocalDate expiry) {
         String id = "hg0" + idCounter;
@@ -21,11 +33,15 @@ public class InventoryService {
         }
     }
 
-    Product getProduct(String id) {
+    public int getInventorySize() {
+        return inventory.size();
+    }
+
+   public Product getProduct(String id) {
         return inventory.get(id);
     }
 
-    boolean removeProduct(String id) {
+    public boolean removeProduct(String id) {
         if (inventory.containsKey(id)) {
             inventory.remove(id);
             return true;
@@ -33,7 +49,7 @@ public class InventoryService {
         return false;
     }
 
-    Product updateProduct(String id, Product updated) {
+    public Product updateProduct(String id, Product updated) {
         if (inventory.containsKey(id)) {
             inventory.put(id, updated);
             return updated;
@@ -59,5 +75,18 @@ public class InventoryService {
             }
         }
         return false;
+    }
+
+    public int getProductQuantity(UUID productId, User user) {
+        if (user.getRole() != UserRoles.MANAGER) {
+            throw new ForbiddenException("Only managers can check product quantity");
+        }
+
+        return repository.getQuantity(productId);
+    }
+
+    public void clearInventory() {
+        inventory.clear();
+        idCounter = 1;
     }
 }

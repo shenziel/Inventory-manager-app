@@ -1,4 +1,4 @@
-package inventorymanager.app;
+package inventorymanager.app.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

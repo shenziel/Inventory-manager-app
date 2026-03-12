@@ -1,9 +1,12 @@
 package inventorymanager.app.repository;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@Repository
 public class InMemoryInventoryRepository implements InventoryRepository {
 
     private final Map<UUID, Integer> quantities = new HashMap<>();

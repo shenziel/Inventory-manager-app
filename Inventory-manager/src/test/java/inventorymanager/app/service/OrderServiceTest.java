@@ -1,7 +1,8 @@
-package inventorymanager.app;
+package inventorymanager.app.service;
 
+import inventorymanager.app.exception.ForbiddenException;
+import inventorymanager.app.model.*;
 import inventorymanager.app.repository.*;
-import inventorymanager.app.services.OrderService;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -10,8 +11,11 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.UUID;
+
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("unit")
 class OrderServiceTest {
 
     @Test
@@ -25,12 +29,14 @@ class OrderServiceTest {
 
         OrderService service = new OrderService(inventoryRepo, supplierRepo, orderRepo, fixedClock);
 
-        User manager = new User("John", Role.MANAGER);
+        User manager = new User("John", "password", UserRoles.MANAGER);
         UUID productId = UUID.randomUUID();
         UUID supplierId = UUID.randomUUID();
 
-        when(supplierRepo.existsById(supplierId)).thenReturn(true);
-        when(supplierRepo.suppliesProduct(supplierId, productId)).thenReturn(true);
+        when(supplierRepo.existsById(supplierId.toString())).thenReturn(true);
+        Supplier supplier = new Supplier(supplierId.toString(), "Test Supplier");
+        supplier.getSuppliedProducts().add(productId);
+        when(supplierRepo.findById(supplierId.toString())).thenReturn(supplier);
         when(inventoryRepo.getQuantity(productId)).thenReturn(10);
 
         // Act
@@ -55,7 +61,7 @@ class OrderServiceTest {
 
         OrderService service = new OrderService(inventoryRepo, supplierRepo, orderRepo, Clock.systemUTC());
 
-        User manager = new User("John", Role.MANAGER);
+        User manager = new User("John", "password", UserRoles.MANAGER);
 
         assertThrows(IllegalArgumentException.class,
                 () -> service.orderProduct(UUID.randomUUID(), UUID.randomUUID(), 0, manager));
@@ -69,7 +75,7 @@ class OrderServiceTest {
 
         OrderService service = new OrderService(inventoryRepo, supplierRepo, orderRepo, Clock.systemUTC());
 
-        User admin = new User("Anna", Role.ADMIN);
+        User admin = new User("Anna", "password", UserRoles.ADMIN);
 
         assertThrows(ForbiddenException.class,
                 () -> service.orderProduct(UUID.randomUUID(), UUID.randomUUID(), 1, admin));
