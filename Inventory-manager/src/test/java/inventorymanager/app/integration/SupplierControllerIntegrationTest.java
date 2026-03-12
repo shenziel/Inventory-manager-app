@@ -19,14 +19,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @DisplayName("Integration Tests for SupplierController")
-public class SupplierControllerIntegrationTest {
+class SupplierControllerIntegrationTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
 
     private MockMvc mockMvc;
 
-    @Autowired
     private SupplierService supplierService;
 
     private ObjectMapper objectMapper;
@@ -35,9 +34,9 @@ public class SupplierControllerIntegrationTest {
 
     @BeforeEach
     void setUp() {
+        supplierService = new SupplierService();
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         objectMapper = new ObjectMapper();
-        // Note: supplierService is autowired from the Spring context; clear state if necessary
         if (supplierService != null) {
             supplierService.clear();
         }

@@ -1,21 +1,25 @@
 package inventorymanager.app.service;
+
 import inventorymanager.app.model.Product;
 
+import inventorymanager.app.repository.InventoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
 @DisplayName("Tests for stock alert and expiry alert")
 
-public class InventoryServiceTest {
+class InventoryServiceTest {
     private InventoryService inventoryService;
+    private InventoryRepository inventoryRepository;
 
     @BeforeEach
     void setUp() {
-        inventoryService = new InventoryService();
+        inventoryService = new InventoryService(inventoryRepository);
     }
 
     @Test
@@ -35,7 +39,6 @@ public class InventoryServiceTest {
         boolean alert = inventoryService.isAboutToExpire(product.getName());
         assertTrue(alert);
     }
-
 
     @Test
     void testAddProduct() {

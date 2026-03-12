@@ -1,7 +1,7 @@
-// java
 package inventorymanager.app.integration;
 
 import inventorymanager.app.model.Product;
+import inventorymanager.app.repository.InventoryRepository;
 import inventorymanager.app.service.InventoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,20 +18,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DisplayName("Integration Tests for ProductController")
-public class ProductControllerIntegrationTest {
+class ProductControllerIntegrationTest {
 
     @LocalServerPort
     private int port;
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    @Autowired
     private InventoryService inventoryService;
 
     private static final String BASE_PATH = "/api/products";
 
+    @Autowired
+    private InventoryRepository inventoryRepository;
+
     @BeforeEach
     void setUp() {
+        inventoryService = new InventoryService(inventoryRepository);
         inventoryService.clearInventory();
     }
 

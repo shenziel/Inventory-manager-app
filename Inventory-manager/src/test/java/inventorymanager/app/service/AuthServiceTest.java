@@ -8,26 +8,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.InputMismatchException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class AuthServiceTest {
     @InjectMocks
     private AuthService authService;
     @Mock
-    private PasswordEncoder passwordEncoder;
-    @Mock
     private UserService userService;
 
     @BeforeEach
     void setUp() {
+        userService.getAllUsers().clear();
     }
 
     @Test

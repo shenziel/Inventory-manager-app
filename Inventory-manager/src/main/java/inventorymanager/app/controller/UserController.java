@@ -21,7 +21,6 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
-        System.out.println("I got until here, at least");
         try {
             List<User> users = userService.getUsersList().values().stream().toList();
             return ResponseEntity.ok(users);

@@ -1,17 +1,26 @@
 package inventorymanager.app.service;
+import inventorymanager.app.exception.ForbiddenException;
 import inventorymanager.app.model.Product;
+import inventorymanager.app.model.User;
+import inventorymanager.app.model.UserRoles;
+import inventorymanager.app.repository.InventoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class InventoryService {
-    //later when tests are done
-    private Map<String, Product> inventory = new HashMap<>();
+    private final Map<String, Product> inventory = new HashMap<>();
     private int idCounter = 1;
+
+    private final InventoryRepository repository;
+
+    public InventoryService(InventoryRepository repository) {
+        this.repository = repository;
+    }
 
     public void addProduct(String name, double price, int quantity, LocalDate expiry) {
         String id = "hg0" + idCounter;
@@ -66,6 +75,14 @@ public class InventoryService {
             }
         }
         return false;
+    }
+
+    public int getProductQuantity(UUID productId, User user) {
+        if (user.getRole() != UserRoles.MANAGER) {
+            throw new ForbiddenException("Only managers can check product quantity");
+        }
+
+        return repository.getQuantity(productId);
     }
 
     public void clearInventory() {

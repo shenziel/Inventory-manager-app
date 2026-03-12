@@ -3,7 +3,6 @@ package inventorymanager.app.integration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import inventorymanager.app.dto.RegisterRequest;
 import inventorymanager.app.model.User;
-import inventorymanager.app.model.UserRoles;
 import inventorymanager.app.service.UserService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -20,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
-public class UserControllerIntegrationTest {
+class UserControllerIntegrationTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -29,9 +27,6 @@ public class UserControllerIntegrationTest {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     private ObjectMapper objectMapper;
 

@@ -1,16 +1,12 @@
 package inventorymanager.app.config;
 
-import inventorymanager.app.model.Product;
-import inventorymanager.app.model.User;
 import inventorymanager.app.service.InventoryService;
 import inventorymanager.app.service.UserService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Component
 public class DataInitializer implements ApplicationRunner {
