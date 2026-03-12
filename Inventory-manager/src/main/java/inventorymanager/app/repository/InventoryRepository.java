@@ -1,7 +1,9 @@
 package inventorymanager.app.repository;
 
-import inventorymanager.app.model.Product;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.UUID;
 
-public interface InventoryRepository  extends MongoRepository<Product, String> {
+public interface InventoryRepository {
+    void setQuantity(UUID productId, int quantity);
+
+    int getQuantity(UUID productId);
 }

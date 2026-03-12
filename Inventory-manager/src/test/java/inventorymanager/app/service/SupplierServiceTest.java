@@ -78,7 +78,7 @@ class SupplierServiceTest {
     @Test
     @DisplayName("updateSupplier should throw when id does not exist")
     void updateSupplier_nonExisting_throws() {
-        assertThrows(RuntimeException.class, () -> svc.updateSupplier("missing", new Supplier("x","y")));
+        assertThrows(RuntimeException.class, () -> svc.updateSupplier("missing", new Supplier("x", "y")));
     }
 
     @Test
@@ -87,7 +87,7 @@ class SupplierServiceTest {
         assertThrows(IllegalArgumentException.class, () -> svc.getSupplier(null));
         assertThrows(IllegalArgumentException.class, () -> svc.getSupplier(" "));
         assertThrows(IllegalArgumentException.class, () -> svc.removeSupplier(""));
-        assertThrows(IllegalArgumentException.class, () -> svc.updateSupplier(null, new Supplier("x","y")));
+        assertThrows(IllegalArgumentException.class, () -> svc.updateSupplier(null, new Supplier("x", "y")));
     }
 
     private Supplier addsupplier() {

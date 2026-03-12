@@ -8,31 +8,25 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.HashMap;
 import java.util.InputMismatchException;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class AuthServiceTests {
     @InjectMocks
     private AuthService authService;
     @Mock
-    private PasswordEncoder passwordEncoder;
-    @Mock
     private UserService userService;
 
     @BeforeEach
     void setUp() {
+        userService.getAllUsers().clear();
     }
 
-//    @Test
+    @Test
     void testUserLogin_shouldReturnUserWhenLoginSuccessful() {
         // Setup
         String username = "test@example.com";
@@ -49,7 +43,7 @@ class AuthServiceTests {
         assertEquals(username, result.getUsername());
     }
 
-//    @Test
+    @Test
     void testUserLogin_shouldThrowWhenCredentialsInvalid() {
         // Setup
         String username = "username1";
@@ -60,14 +54,14 @@ class AuthServiceTests {
         assertThrows(InputMismatchException.class, () -> authService.login(username, password));
     }
 
-//    @Test
+    @Test
     void testUserLogin_shouldThrowWhenUsernameIsNull() {
         // Setup
         String password = "password123";
         assertThrows(IllegalArgumentException.class, () -> authService.login(null, password));
     }
 
-//    @Test
+    @Test
     void testLogout_shouldReturnTrueWhenSuccessful() {
         // Setup
         String userId = "123";
@@ -85,7 +79,7 @@ class AuthServiceTests {
         assertFalse(user.isLoggedIn());
     }
 
-//    @Test
+    @Test
     void testLogout_shouldThrowWhenNotLoggedIn() {
         // Setup
         String username = "test@example.com";
