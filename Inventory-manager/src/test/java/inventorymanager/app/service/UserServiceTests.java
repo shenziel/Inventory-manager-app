@@ -2,7 +2,6 @@ package inventorymanager.app.service;
 
 import inventorymanager.app.model.User;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 import inventorymanager.app.model.UserRoles;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,10 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class UserServiceTests {
 
